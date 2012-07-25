@@ -353,9 +353,7 @@ class ReplicaSetConnection(common.BaseObject):
             self.__monitor = MonitorThread(self)
             # Sadly, weakrefs aren't totally reliable in PyPy and Jython
             # so use a daemon thread there.
-            if (sys.platform.startswith('java') or
-                'PyPy' in sys.version):
-                self.__monitor.setDaemon(True)
+            self.__monitor.setDaemon(True)
         self.__monitor.start()
 
 
